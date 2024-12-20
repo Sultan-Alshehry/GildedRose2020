@@ -109,6 +109,26 @@ public class GildedRoseTest {
 	}
 	
 	@Test
+	public void backstagePassesConcertAboutToStartGettingExpensiveTest() {
+		GildedRose inn = new GildedRose();
+		inn.setItem(new Item("Backstage passes to a TAFKAL80ETC concert", 6, 20));
+		inn.oneDay();
+		List<Item> items = inn.getItems();
+		int quality = items.get(0).getQuality();
+		assertEquals("Failed quality for Backstage Passes concert end", 22, quality);
+	}
+	
+	@Test
+	public void backstagePassesConcertAboutToEndTest() {
+		GildedRose inn = new GildedRose();
+		inn.setItem(new Item("Backstage passes to a TAFKAL80ETC concert", 1, 20));
+		inn.oneDay();
+		List<Item> items = inn.getItems();
+		int quality = items.get(0).getQuality();
+		assertEquals("Failed quality for Backstage Passes concert end", 23, quality);
+	}
+	
+	@Test
 	public void backstagePassesConcertEndTest() {
 		GildedRose inn = new GildedRose();
 		inn.setItem(new Item("Backstage passes to a TAFKAL80ETC concert", -1, 20));
@@ -259,4 +279,38 @@ public class GildedRoseTest {
 			assertEquals("Failed quality for Dexterity Vest" + i, 19, quality);
 		}
 	}
+	
+	@Test
+	public void expiredVestTest() {
+	    GildedRose inn = new GildedRose();
+
+	    inn.setItem(new Item("+5 Dexterity Vest", 0, 20));
+	    inn.setItem(new Item("+5 Dexterity Vest", -2, 20));
+
+	    inn.oneDay();
+
+	    List<Item> items = inn.getItems();
+	    int quality1 = items.get(0).getQuality();
+	    int quality2 = items.get(1).getQuality();
+
+	    assertEquals("Failed for item with SellIn 0", 18, quality1);
+	    assertEquals("Failed for item with SellIn -1", 18, quality2);
+	}
+	
+	@Test
+	public void noQualityVestTest() {
+	    GildedRose inn = new GildedRose();
+
+	    inn.setItem(new Item("+5 Dexterity Vest", 1, 0));
+
+	    inn.oneDay();
+
+	    List<Item> items = inn.getItems();
+	    int quality1 = items.get(0).getQuality();
+
+	    assertEquals("Failed for item with SellIn 0", 0, quality1);
+	}
+	
+	
+
 }

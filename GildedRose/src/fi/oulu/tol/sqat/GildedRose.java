@@ -38,12 +38,7 @@ public class GildedRose {
                 {
                     if (!"Sulfuras, Hand of Ragnaros".equals(items.get(i).getName()))
                     {
-                    	if (items.get(i).getSellIn() > 0) {
-                    		items.get(i).setQuality(items.get(i).getQuality() - 1);
-                    	}
-                    	else {
-                    		items.get(i).setQuality(items.get(i).getQuality() - 2);
-                    	}
+                        items.get(i).setQuality(items.get(i).getQuality() - 1);
                     }
                 }
             }
@@ -55,28 +50,21 @@ public class GildedRose {
 
                     if ("Backstage passes to a TAFKAL80ETC concert".equals(items.get(i).getName()))
                     {
-                    	if (items.get(i).getSellIn() < 0)
-                    	{
-                    		items.get(i).setQuality(0);
-                    	}
-                    	else
-                    	{
-	                        if (items.get(i).getSellIn() < 11)
-	                        {
-	                            if (items.get(i).getQuality() < 50)
-	                            {
-	                                items.get(i).setQuality(items.get(i).getQuality() + 1);
-	                            }
-	                        }
-	
-	                        if (items.get(i).getSellIn() < 6)
-	                        {
-	                            if (items.get(i).getQuality() < 50)
-	                            {
-	                                items.get(i).setQuality(items.get(i).getQuality() + 1);
-	                            }
-	                        }
-	                    }
+                        if (items.get(i).getSellIn() < 11)
+                        {
+                            if (items.get(i).getQuality() < 50)
+                            {
+                                items.get(i).setQuality(items.get(i).getQuality() + 1);
+                            }
+                        }
+
+                        if (items.get(i).getSellIn() < 6)
+                        {
+                            if (items.get(i).getQuality() < 50)
+                            {
+                                items.get(i).setQuality(items.get(i).getQuality() + 1);
+                            }
+                        }
                     }
                 }
             }
